@@ -31,7 +31,7 @@
 <div id="searchDiv" style="right: 50px;">
 		<form id="ugcPost" action="ugcPost" method="post" >
 		
-			<input type="text" class="form-control" name="shareCommentary" placeholder="Comparte tu opinión sobre este curso."/> 
+			<input type="text" class="form-control" name="shareCommentary" placeholder="Comparte tu opinión sobre este curso." required/> 
 			<input type="hidden" name="title" value="${course.name}"/> 
 			<input type="hidden" name="accessToken" value="${accessToken}"/> 
 			<input type="hidden" name="url" value="${course.url}"/>  
