@@ -3,7 +3,7 @@
  <!DOCTYPE html>
 <html>
 <head>
-	<title>JobFinder</title>
+	<title>Studentalks</title>
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	
@@ -13,7 +13,7 @@
 		<div class="container-header">
 			<div class="logo-tittle">
 				<img src="/image/logo.jpeg" height="80px">
-				<h4> JobFinder </h4>
+				<h4> Studentalks </h4>
 			</div>
 			<nav class="menu">
 			<ul>

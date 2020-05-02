@@ -32,7 +32,7 @@ header{
 	margin-top: 30px;
 	margin-left: 10px;
 	font-weight: 1000;
-	color: #16c1f3;
+	color: #aeeee0;
 }
 
 .menu{
@@ -51,7 +51,7 @@ header{
 .menu ul li a{
 	text-decoration: none;
 	padding: 10px 20px;
-	color: #16c1f3;	
+	color: #aeeee0;	
 }
 .nombres{
 	margin-left: 20px;
@@ -59,7 +59,7 @@ header{
 }
 .nombres h1{
 	font-size: 30px;
-	color: #16c1f3;
+	color: #aeeee0;
 }
 .nombres p {
 
@@ -67,13 +67,16 @@ header{
 	
 }
 .descripcion{
-	margin-left: 20px;
+	margin-left: 90px;
 	margin-top: 45px;
-	margin-right: 270px;
+	margin-right: 90px;
+	display: inline-block;
+	overflow: hidden;
+	text-align: justify;
 }
 .descripcion h1{
 	font-size: 27px;
-	color: #16c1f3;
+	color: #aeeee0;
 }
 .descripcion p{
 	font-size: 22px;
