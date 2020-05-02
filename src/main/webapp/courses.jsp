@@ -31,7 +31,7 @@
       </div>
     <div align="center" style="margin: 20px;text-align: center">
      <p class="card-text">${course.summary}</p>
-     <a href="http://localhost:8090/${course.type}Course?code=${course.code}&accessToken=${accessToken}" class="button">Ver curso</a>
+     <a href="http://studentalks.appspot.com/${course.type}Course?code=${course.code}&accessToken=${accessToken}" class="button">Ver curso</a>
      </div>
   </div>
 </div>
