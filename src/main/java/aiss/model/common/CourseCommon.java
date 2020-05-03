@@ -1,6 +1,6 @@
 package aiss.model.common;
 
-public class Course implements Comparable<Course>{
+public class CourseCommon implements Comparable<CourseCommon>{
 	String title;
 	Double price;
 	String summary;
@@ -37,7 +37,7 @@ public class Course implements Comparable<Course>{
 		this.type = type;
 	}
 	  @Override
-      public int compareTo(Course c) {
+      public int compareTo(CourseCommon c) {
           if (price < c.price) {
               return -1;
           }

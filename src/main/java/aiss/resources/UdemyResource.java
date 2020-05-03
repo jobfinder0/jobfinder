@@ -15,7 +15,7 @@ import org.apache.http.util.EntityUtils;
 import com.google.appengine.repackaged.com.google.gson.Gson;
 import com.google.appengine.repackaged.com.google.gson.JsonSyntaxException;
 
-import aiss.model.common.Course;
+import aiss.model.common.CourseCommon;
 import aiss.model.udemy.Courses;
 import aiss.model.udemy.Result;
 
@@ -23,8 +23,8 @@ import aiss.model.udemy.Result;
 public class UdemyResource {
 	String authorization = "Basic Sk94ekhEN0czSlNvalJXZ1V6RnRRZm82TE40QTM2QW55akRXcTNlODowYmNiNkoxZjRWTUNMSXZRN3lHWUJ0VUlUbzN2UHRUdGptMzczSHJBS2JqaUNJY1NqckpZVDVwODZuSTNlSG4zQkxveHNwSkI3eXdvc3N0SU53R1d0dzB2OExVNXI1U0VJek5VVUo0QmpvTU9qczBiZ0V0TTRlYmV5QTNjRHFjTw==";
 	
-	public List<Course> getCourses(String search) throws JsonSyntaxException, ClientProtocolException, IOException{
-		List<Course> courses = new ArrayList<Course>();
+	public List<CourseCommon> getCourses(String search) throws JsonSyntaxException, ClientProtocolException, IOException{
+		List<CourseCommon> courses = new ArrayList<CourseCommon>();
 		String query = "https://www.udemy.com/api-2.0/courses/?search="+search
 				+ "&page_size=100";
          Gson gson = new Gson();
@@ -32,7 +32,7 @@ public class UdemyResource {
          
 		List<Result> udemyResults = result.getResults();
 		for (Result udemyResult : udemyResults) {
-			Course course = new Course();
+			CourseCommon course = new CourseCommon();
 			course.setCode(udemyResult.getId().toString());
 			course.setTitle(udemyResult.getTitle());
 			char[] precio = udemyResult.getPrice().toCharArray();

@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import aiss.model.common.Course;
+import aiss.model.common.CourseCommon;
 import aiss.model.tutellus.TutellusCourse;
 import aiss.resources.TutellusResource;
 
@@ -20,7 +20,7 @@ public class TutellusTest {
 			
 			// Creamos el recurso y hacemos la llamada para obtener los cursos
 			TutellusResource tutResource = new TutellusResource();
-			List<Course> results = tutResource.getCourses(search);
+			List<CourseCommon> results = tutResource.getCourses(search);
 			
 			// Comprobamos que la búsqueda no devuelve null
 			assertNotNull("La búsqueda devolvió null", results);

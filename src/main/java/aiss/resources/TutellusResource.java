@@ -5,14 +5,14 @@ import java.util.List;
 
 import org.restlet.resource.ClientResource;
 
-import aiss.model.common.Course;
+import aiss.model.common.CourseCommon;
 import aiss.model.tutellus.TutellusCourse;
 
 public class TutellusResource {
 	String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJOZUxQT2JWNTNhIiwiYXVkIjoiYWZmaWxpYXRlIiwiYWZmX3Rva2VuIjoiOGJiOGNiYzU0OTYwNGNiMTk1ZTQ0NTY0Y2RkOTFjYjIiLCJpYXQiOjE1ODgyODQ3MzJ9.VJn7Lsm23C5nP5YqR6a_7ERF-RAXZJY3hLVz44uYLQs";
 	
-	public List<Course> getCourses(String search) {
-		List<Course> courses = new ArrayList<Course>();
+	public List<CourseCommon> getCourses(String search) {
+		List<CourseCommon> courses = new ArrayList<CourseCommon>();
 		String query = "https://affiliate.tutellus.com/api/v1/courses?q="+search
 				+ "&limit=100";
 		//head-> x-access-token : token
@@ -20,7 +20,7 @@ public class TutellusResource {
 		cr.getRequest().getHeaders().set("x-access-token", token);
 		TutellusCourse[] results = cr.get(TutellusCourse[].class);
 		for (TutellusCourse result : results) {
-			Course course = new Course();
+			CourseCommon course = new CourseCommon();
 			course.setCode(result.getCode());
 			course.setTitle(result.getName());
 			course.setPrice(result.getPrice().getEUR().doubleValue());

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import aiss.model.common.Course;
+import aiss.model.common.CourseCommon;
 import aiss.resources.LinkedInResource;
 import aiss.resources.TutellusResource;
 import aiss.resources.UdemyResource;
@@ -42,21 +42,21 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		linkResource.ugcPost(shareCommentary, title, url, web, accessToken);
 		RequestDispatcher rd = null;
 		request.setAttribute("accessToken", accessToken);
-		List<Course> courses = new ArrayList<Course>();
+		List<CourseCommon> courses = new ArrayList<CourseCommon>();
 		String searchQuery = "";
 		TutellusResource tutellusResource = new TutellusResource();
-		List<Course> coursesTutellus = tutellusResource.getCourses(searchQuery);
+		List<CourseCommon> coursesTutellus = tutellusResource.getCourses(searchQuery);
 		UdemyResource udemyResource = new UdemyResource();
-		List<Course> coursesUdemy = udemyResource.getCourses(searchQuery);
+		List<CourseCommon> coursesUdemy = udemyResource.getCourses(searchQuery);
 		if (coursesTutellus!=null){
 			courses.addAll(coursesTutellus);
 		}
 		if(coursesUdemy!=null) {
 			courses.addAll(coursesUdemy);
 		}
-		Collections.sort(courses, new Comparator<Course>() {
+		Collections.sort(courses, new Comparator<CourseCommon>() {
 			@Override
-			public int compare(Course c1, Course c2) {
+			public int compare(CourseCommon c1, CourseCommon c2) {
 				if (c1.getPrice() < c2.getPrice()) {
 		              return -1;
 		          }

@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import com.google.appengine.repackaged.com.google.gson.JsonSyntaxException;
 
-import aiss.model.common.Course;
+import aiss.model.common.CourseCommon;
 import aiss.model.udemy.Result;
 import aiss.resources.UdemyResource;
 
@@ -24,7 +24,7 @@ public class UdemyTest {
 			
 			// Creamos el recurso y hacemos la llamada para obtener los cursos
 			UdemyResource udemResource = new UdemyResource();
-			List<Course> results = udemResource.getCourses(search);
+			List<CourseCommon> results = udemResource.getCourses(search);
 			
 			// Comprobamos que la búsqueda no devuelve null
 			assertNotNull("La búsqueda devolvió null", results);
