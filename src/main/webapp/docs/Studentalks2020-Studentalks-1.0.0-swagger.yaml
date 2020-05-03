@@ -1,0 +1,365 @@
+swagger: '2.0'
+info:
+  description: This is an api where you can get information about courses and comment on them.
+  version: 1.0.0
+  title: Studentalks
+  # put the contact info for your development or API team
+  contact:
+    email: studentalks2020@gmail.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+    
+host: studentalks.appspot.com
+basePath: /api
+schemes:
+  - https
+
+# tags are used for organizing operations
+tags:
+- name: courses
+- name: comments
+
+paths:
+  /courses:
+    get:
+      tags:
+      - courses
+      summary: Get all courses
+      operationId: getAllCourses
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: order
+        description: Sort to use in search results. It can be a value of the following title, -title, price or -price.
+        required: false
+        type: string
+      - in: query
+        name: isEmpty
+        description: If it is true it returns only the courses that do not have comments and if it is false only the courses with comments
+        type: boolean
+      - in: query
+        name: title
+        description: Text to search in the course title.
+        required: false
+        type: string
+      - in: query
+        name: limit
+        description: Maximum number of results to return in each request.
+        required: false
+        type: integer
+      - in: query
+        name: offset
+        description: Number of elements to ignore, useful to manage a classic pagination.
+        required: false
+        type: integer
+      responses:
+        200:
+          description: 	Search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Course'
+        400:
+          description: Bad request
+          
+    post:
+      tags:
+      - courses
+      summary: Add new course
+      operationId: addCourse
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Course
+        required: true
+        schema:
+          $ref: '#/definitions/Course'
+      responses:
+        201:
+          description: Course created
+        400:
+          description: Bad request
+    
+    put:
+      tags:
+      - courses
+      summary: Update a course
+      operationId: updateCourse
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: Course
+        required: true
+        schema:
+          $ref: '#/definitions/Course'
+      responses:
+        204:
+          description: Course updated
+        400:
+          description: Bad request
+        404:
+          description: Course not found
+          
+          
+  /courses/{id}:
+    get:
+      tags:
+      - courses
+      summary: Get a course by id
+      operationId: getCourse
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of course to return.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Course matching id
+          schema:
+              $ref: '#/definitions/Course'
+        404:
+          description: Course not found
+    delete:
+      tags:
+      - courses
+      summary: Remove a course by id
+      operationId: removeCourse
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of course to remove.
+        required: true
+        type: string
+      responses:
+        204:
+          description: Course removed
+        404:
+          description: Course not found      
+  
+  /courses/{courseId}/{commentId}:
+    post:
+      tags:
+      - courses
+      summary: Add comment to a course
+      operationId: addCommentCourse
+      produces:
+      - application/json
+      parameters:
+      - name: courseId
+        in: path
+        description: ID of course.
+        required: true
+        type: string
+      - name: commentId
+        in: path
+        description: ID of comment.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Comment added to course
+          schema:
+              $ref: '#/definitions/Course'
+        400:
+          description: Bad request
+        404:
+          description: Course or comment not found
+    
+    delete:
+      tags:
+      - courses
+      summary: Remove comment from course
+      operationId: removeCommentCourse
+      produces:
+      - application/json
+      parameters:
+      - name: courseId
+        in: path
+        description: ID of course.
+        required: true
+        type: string
+      - name: commentId
+        in: path
+        description: ID of comment.
+        required: true
+        type: string
+      responses:
+        204:
+          description: Comment removed from course
+        404:
+          description: Course or comment not found
+ 
+  /comments:
+    get:
+      tags:
+      - comments
+      summary: Get all comments
+      operationId: getAllComment
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: q
+        description: Text to search in the comment text or username.
+        required: false
+        type: string
+      - in: query
+        name: limit
+        description: Maximum number of results to return in each request.
+        required: false
+        type: integer
+      - in: query
+        name: offset
+        description: Number of elements to ignore, useful to manage a classic pagination.
+        required: false
+        type: integer
+      responses:
+        200:
+          description: 	Search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Comment'
+        400:
+          description: Bad request
+          
+    post:
+      tags:
+      - comments
+      summary: Add new comment
+      operationId: addComment
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Comment
+        required: true
+        schema:
+          $ref: '#/definitions/Comment'
+      responses:
+        201:
+          description: Comment created
+        400:
+          description: Bad request
+    
+    put:
+      tags:
+      - comments
+      summary: Update a comment
+      operationId: updateComment
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: Course
+        required: true
+        schema:
+          $ref: '#/definitions/Comment'
+      responses:
+        204:
+          description: Comment updated
+        400:
+          description: Bad request
+        404:
+          description: Course not found
+          
+          
+  /comments/{id}:
+    get:
+      tags:
+      - comments
+      summary: Get a comment by id
+      operationId: getComment
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of comment to return.
+        required: true
+        type: string
+      responses:
+        200:
+          description: Comment matching id
+          schema:
+              $ref: '#/definitions/Comment'
+        404:
+          description: Comment not found
+    delete:
+      tags:
+      - comments
+      summary: Remove a comment by id
+      operationId: removeComment
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of comment to remove.
+        required: true
+        type: string
+      responses:
+        204:
+          description: Comment removed
+        404:
+          description: Comment not found            
+definitions:
+  Course:
+    type: object
+    required:
+    - id
+    - title
+    - description
+    - price
+    - currency
+    - comments
+    properties:
+      id:
+        type: string
+        example: course0
+      title:
+        type: string
+        example: Java course
+      description:
+        type: string
+        example: Advanced java course
+      price:
+        type: number
+        example: 12.50 
+      currency:
+        type: string
+        example: EUR
+      comments:
+        type: array
+        items:
+            $ref: '#/definitions/Comment'
+  Comment:
+    type: object
+    required:
+    - id
+    - text
+    - username
+    properties:
+      id:
+        type: string
+        example: comment0
+      text:
+        type: string
+        example: It is a very useful course.
+      username:
+        type: string
+        example: User1
