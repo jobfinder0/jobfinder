@@ -14,7 +14,7 @@ info:
 host: studentalks.appspot.com
 basePath: /api
 schemes:
-  - https
+  - http
 
 # tags are used for organizing operations
 tags:
